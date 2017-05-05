@@ -6,16 +6,22 @@ class Layout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipe: '',
+      name: '',
       ingredients: '',
-      instructions: ''
+      instructions: '',
+      recipes: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
-    <RecipeList recipe={this.state.recipe} />
+    let newRecipe = [
+      [this.state.name],
+      [this.state.ingredients],
+      [this.state.instructions],
+    ];
+    this.setState({recipes: this.state.recipes.concat([newRecipe])});
     event.preventDefault();
   }
 
@@ -33,11 +39,11 @@ class Layout extends Component {
     render() {
       return (
         <div className='recipe-column'>
-        <RecipeList recipe={this.state.recipe} />
-          <form>
+        <RecipeList recipes={this.state.recipes} />
+          <form onSubmit={this.handleSubmit}>
             <label>
               <input type="text"
-                name="recipe"
+                name="name"
                 onChange={this.handleChange} />
                 Recipe <br />
             </label>
@@ -55,8 +61,7 @@ class Layout extends Component {
               Instructions <br />
             </label>
             <br />
-            <input type="submit" value="Submit"
-            onClick={this.handleSubmit} />
+            <input type="submit" value="Submit" />
           </form>
           </div>
       )

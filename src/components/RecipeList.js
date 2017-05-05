@@ -5,11 +5,16 @@ import React from 'react';
 function RecipeList (props) {
   return (
     <div>
-      <div>
-      <p>stuff</p>
-        <h2>{props.recipe}</h2>
-      </div>
-      </div>
+    <ul>
+      {props.recipes.map(function(recipe) {
+       return (
+          <li className='popular-list'>
+            {recipe}
+          </li>
+       )
+     })}
+     </ul>
+     </div>
   )
 }
 

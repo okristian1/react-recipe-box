@@ -41,6 +41,11 @@
   border-bottom: 3px solid black;
 }
 
+li {
+  list-style: none;
+  text-align: left;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
