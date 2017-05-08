@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import RecipeList from'./RecipeList';
 
 
+
+
 class Layout extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: 0,
       name: '',
       ingredients: '',
       instructions: '',
@@ -16,12 +19,16 @@ class Layout extends Component {
   }
 
   handleSubmit(event) {
+    let id = this.state.id;
+    this.setState({id: ++id })
     let newRecipe = [
       [this.state.name],
       [this.state.ingredients],
       [this.state.instructions],
+      [this.state.id],
     ];
     this.setState({recipes: this.state.recipes.concat([newRecipe])});
+    .then localStorage.setItem('cookBook', JSON.stringify(this.state.recipes));
     event.preventDefault();
   }
 
@@ -35,8 +42,8 @@ class Layout extends Component {
     });
   }
 
-
     render() {
+      console.log(this.state.recipes);
       return (
         <div className='recipe-column'>
         <RecipeList recipes={this.state.recipes} />

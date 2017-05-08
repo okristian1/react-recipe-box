@@ -9,7 +9,7 @@ function RecipeList (props) {
     <ul>
       {props.recipes.map(function(recipe) {
        return (
-         <ul>
+         <ul key={recipe[3]}>
           <li className='recipe-name'>
               <h2>Name: {recipe[0]} </h2>
           </li>
