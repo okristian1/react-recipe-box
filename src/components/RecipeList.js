@@ -27,6 +27,5 @@ function RecipeList (props) {
   )
 }
 
-sdsd
 
 export default RecipeList;
