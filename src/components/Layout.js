@@ -5,10 +5,12 @@ import uuid from 'uuid';
 
 class Layout extends Component {
   constructor(props) {
-    getRecipes();
+    var fetch = getRecipes();
+    var old = JSON.parse(fetch);
+    console.log(old);
     super(props);
     this.state = {
-      id: 0,
+      id: '',
       name: '',
       ingredients: '',
       instructions: '',
@@ -18,7 +20,7 @@ class Layout extends Component {
           name: 'Pancakes',
           ingredients: 'Eggs, milk, flour',
           instructions: 'Mix dry stuff, add milk and eggs while stirring',
-        }
+        },
       ],
     };
     this.handleChange = this.handleChange.bind(this);
@@ -26,24 +28,18 @@ class Layout extends Component {
   }
 
   handleSubmit(event) {
-    if (
-      this.state.name !== '' &&
-      this.state.ingredients !== ''&&
-      this.state.instructions !== '') {
-
-    let id = this.state.id;
-    this.setState({id: ++id })
     let newRecipe = [
-      [this.state.name],
-      [this.state.ingredients],
-      [this.state.instructions],
-      [this.state.id],
+      {
+        id: uuid.v4(),
+        name: this.state.name,
+        ingredients: this.state.ingredients,
+        instructions: this.state.instructions,
+      }
     ];
-    this.setState({recipes: this.state.recipes.concat([newRecipe])});
+    this.setState({recipes: this.state.recipes.concat(newRecipe)});
     updateStorage(newRecipe);
     event.preventDefault();
   }
-}
 
   handleChange(event) {
     const target = event.target;

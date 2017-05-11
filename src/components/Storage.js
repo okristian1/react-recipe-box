@@ -1,16 +1,18 @@
 
 function updateStorage(newRecipe) {
-  var savedRecipes = localStorage.getItem('cookBook');
-  if (!savedRecipes)
+  var savedRecipes = JSON.parse(localStorage.getItem('cookBook'));
+  if (!savedRecipes) {
     savedRecipes = '';
-  localStorage.setItem('cookBook', savedRecipes + newRecipe);
+  }
+  else {
+    newRecipe += savedRecipes;
+  }
+  newRecipe = JSON.stringify(newRecipe);
+  localStorage.setItem('cookBook', newRecipe);
 }
 
 function getRecipes() {
-  var old = localStorage.getItem('cookBook');
-  var items = new Array(old);
-  console.log(items);
-  return items;
+  return localStorage.getItem('cookBook');
 }
 
 export {updateStorage};
