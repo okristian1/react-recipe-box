@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RecipeList from'./RecipeList';
 import {updateStorage, getRecipes} from './Storage'
+import uuid from 'uuid';
 
 class Layout extends Component {
   constructor(props) {
@@ -11,7 +12,14 @@ class Layout extends Component {
       name: '',
       ingredients: '',
       instructions: '',
-      recipes: [],
+      recipes: [
+        {
+          id: uuid.v4(),
+          name: 'Pancakes',
+          ingredients: 'Eggs, milk, flour',
+          instructions: 'Mix dry stuff, add milk and eggs while stirring',
+        }
+      ],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
