@@ -13,12 +13,31 @@ function testData() {
 }
 //testData();
 
+function initializeLocalStorage() {
+  var savedRecipes = JSON.parse(localStorage.getItem('cookBook'));
+  if (!savedRecipes) {
+    localStorage.setItem('cookBook', JSON.stringify([]));
+    console.log("empty");
+  } else {
+  console.log("here");
+}
+}
+
+initializeLocalStorage();
+
 
 function updateStorage(newRecipe) {
   var savedRecipes = JSON.parse(localStorage.getItem('cookBook'));
+  if (!savedRecipes) {
+    localStorage.setItem('cookBook', JSON.stringify([]));
+    savedRecipes = JSON.parse(localStorage.getItem('cookBook'));
+
+  }
+  console.log(newRecipe);
+    savedRecipes.push(newRecipe);
     console.log(savedRecipes);
-    console.log(newRecipe);
-    localStorage.setItem('cookBook', JSON.stringify(newRecipe));
+
+    localStorage.setItem('cookBook', JSON.stringify(savedRecipes));
 }
 
 function getRecipes() {
