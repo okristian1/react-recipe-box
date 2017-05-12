@@ -5,9 +5,7 @@ import uuid from 'uuid';
 
 class Layout extends Component {
   constructor(props) {
-    var fetch = getRecipes();
-    var old = JSON.parse(fetch);
-    console.log(old);
+    var old = getRecipes();
     super(props);
     this.state = {
       id: '',
@@ -28,15 +26,15 @@ class Layout extends Component {
   }
 
   handleSubmit(event) {
-    let newRecipe = [
+    let newRecipe =
       {
         id: uuid.v4(),
         name: this.state.name,
         ingredients: this.state.ingredients,
         instructions: this.state.instructions,
       }
-    ];
     this.setState({recipes: this.state.recipes.concat(newRecipe)});
+//    console.log(this.state.recipes);
     updateStorage(newRecipe);
     event.preventDefault();
   }
