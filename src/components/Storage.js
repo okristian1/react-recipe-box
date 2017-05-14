@@ -17,13 +17,8 @@ function initializeLocalStorage() {
   var savedRecipes = JSON.parse(localStorage.getItem('cookBook'));
   if (!savedRecipes) {
     localStorage.setItem('cookBook', JSON.stringify([]));
-    console.log("empty");
-  } else {
-  console.log("here");
+  }
 }
-}
-
-initializeLocalStorage();
 
 
 function updateStorage(newRecipe) {
@@ -31,17 +26,16 @@ function updateStorage(newRecipe) {
   if (!savedRecipes) {
     localStorage.setItem('cookBook', JSON.stringify([]));
     savedRecipes = JSON.parse(localStorage.getItem('cookBook'));
-
   }
-  console.log(newRecipe);
     savedRecipes.push(newRecipe);
-    console.log(savedRecipes);
-
     localStorage.setItem('cookBook', JSON.stringify(savedRecipes));
 }
 
 function getRecipes() {
   var savedRecipes = JSON.parse(localStorage.getItem('cookBook'));
+  if (!savedRecipes) {
+    return []
+  }
   console.log(savedRecipes);
   return savedRecipes
 }

@@ -12,14 +12,7 @@ class Layout extends Component {
       name: '',
       ingredients: '',
       instructions: '',
-      recipes: [
-        {
-          id: uuid.v4(),
-          name: 'Pancakes',
-          ingredients: 'Eggs, milk, flour',
-          instructions: 'Mix dry stuff, add milk and eggs while stirring',
-        },
-      ],
+      recipes: old
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,7 +27,6 @@ class Layout extends Component {
         instructions: this.state.instructions,
       }
     this.setState({recipes: this.state.recipes.concat(newRecipe)});
-//    console.log(this.state.recipes);
     updateStorage(newRecipe);
     event.preventDefault();
   }
