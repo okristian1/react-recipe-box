@@ -17,13 +17,18 @@ function RecipeList (props) {
             <li className='recipe-instructions'>
               <h3>Instructions: </h3>{recipe.instructions}
           </li>
+          <li className='recipe-instructions'>
+            <h3>Instructions: </h3>{recipe.id}
+        </li>
+        <button onClick={() => props.handleRemove(recipe.id)}> Delete </button>
+        <button onClick={() => props.handleEdit(recipe)}> Edit </button>
         </ul>
        )
      })}
      </ul>
+
      </div>
   )
 }
-
 
 export default RecipeList;

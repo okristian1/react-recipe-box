@@ -1,25 +1,3 @@
-import uuid from 'uuid';
-
-function testData() {
-  var testData =
-    {
-      id: uuid.v4(),
-      name: "Pancakes",
-      ingredients: "Eggs, milk, flour",
-      instructions: "Mix dry stuff, add milk and eggs while stirring",
-    }
-//    console.log(testData);
-    localStorage.setItem('cookBook', JSON.stringify(testData));
-}
-//testData();
-
-function initializeLocalStorage() {
-  var savedRecipes = JSON.parse(localStorage.getItem('cookBook'));
-  if (!savedRecipes) {
-    localStorage.setItem('cookBook', JSON.stringify([]));
-  }
-}
-
 
 function updateStorage(newRecipe) {
   var savedRecipes = JSON.parse(localStorage.getItem('cookBook'));
@@ -29,6 +7,10 @@ function updateStorage(newRecipe) {
   }
     savedRecipes.push(newRecipe);
     localStorage.setItem('cookBook', JSON.stringify(savedRecipes));
+}
+
+function deleteRecipe(remainder) {
+  localStorage.setItem('cookBook', JSON.stringify(remainder));
 }
 
 function getRecipes() {
@@ -42,3 +24,4 @@ function getRecipes() {
 
 export {updateStorage};
 export {getRecipes};
+export {deleteRecipe};
