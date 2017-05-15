@@ -21,7 +21,7 @@ function RecipeList (props) {
             <h3>Instructions: </h3>{recipe.id}
         </li>
         <button onClick={() => props.handleRemove(recipe.id)}> Delete </button>
-        <button onClick={() => props.handleEdit(recipe)}> Edit </button>
+        <button onClick={() => props.handleEdit(recipe.id)}> Edit </button>
         </ul>
        )
      })}

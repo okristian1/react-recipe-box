@@ -18,7 +18,6 @@ function getRecipes() {
   if (!savedRecipes) {
     return []
   }
-  console.log(savedRecipes);
   return savedRecipes
 }
 

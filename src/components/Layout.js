@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RecipeList from'./RecipeList';
-import {updateStorage, getRecipes, deleteRecipe} from './Storage'
+import {updateStorage, getRecipes, deleteRecipe, handleEdit} from './Storage'
 import uuid from 'uuid';
 
 class Layout extends Component {
@@ -17,6 +17,7 @@ class Layout extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   handleSubmit(event) {
@@ -43,11 +44,26 @@ class Layout extends Component {
 
   handleRemove(id) {
     const remainder = this.state.recipes.filter((recipe) => {
-      if(recipe.id !== id) return recipe;
+      if (recipe.id !== id) return recipe;
     });
     this.setState({recipes: remainder});
     deleteRecipe(remainder);
   }
+
+  handleEdit(id) {
+    return (
+    let recipe = this.state.recipes.filter((recipe) => {
+      if (recipe.id === id) return recipe;
+    });
+  )
+    render () {
+      return (
+        <p> hello </p>
+      )
+    } 
+
+    }
+
 
     render() {
       return (
@@ -78,6 +94,7 @@ class Layout extends Component {
           <RecipeList
             recipes={this.state.recipes}
             handleRemove={this.handleRemove}
+            handleEdit={this.handleEdit}
           />
           </div>
       )
