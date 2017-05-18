@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import RecipeList from'./RecipeList';
-import Editable from './Editable';
-import {updateStorage, getRecipes, deleteRecipe, handleEdit} from './Storage'
+import ItemList from './ItemList';
+import EditItem from './EditItem';
+import {updateStorage, getRecipes, deleteRecipe} from './Storage'
 import uuid from 'uuid';
 
 class Layout extends Component {
@@ -52,12 +52,10 @@ class Layout extends Component {
   }
 
   handleEdit(id) {
-    let recipe = this.state.recipes.filter((recipe) => {
-      if (recipe.id === id) return recipe;
-    });
-      return (
-        <p> hello </p>
-      )
+    <EditItem
+      value={this.state.name}
+      />
+      console.log("derp");
     }
 
     render() {
@@ -86,14 +84,10 @@ class Layout extends Component {
             <br />
             <input type="submit" value="Submit" />
           </form>
-          <RecipeList
+          <ItemList
             recipes={this.state.recipes}
             handleRemove={this.handleRemove}
             handleEdit={this.handleEdit}
-          />
-          <Editable
-
-
           />
           </div>
       )

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function RecipeList (props) {
+function ItemList (props) {
   return (
     <div className='recipe-container'>
     <h1>Saved Recipes</h1>
@@ -31,4 +31,4 @@ function RecipeList (props) {
   )
 }
 
-export default RecipeList;
+export default ItemList;
