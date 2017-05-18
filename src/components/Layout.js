@@ -51,11 +51,11 @@ class Layout extends Component {
     deleteRecipe(remainder);
   }
 
-  handleEdit(id) {
-    <EditItem
-      value={this.state.name}
-      />
-      console.log("derp");
+  handleEdit(recipe) {
+    event.preventDefault();
+
+    console.log(recipe.name);
+    return recipe.name;
     }
 
     render() {
@@ -89,6 +89,10 @@ class Layout extends Component {
             handleRemove={this.handleRemove}
             handleEdit={this.handleEdit}
           />
+          <EditItem
+            name={this.state.name}
+          />
+
           </div>
       )
     }
