@@ -51,11 +51,23 @@ class Layout extends Component {
     deleteRecipe(remainder);
   }
 
-  handleEdit(recipe) {
+  handleEdit(item) {
     event.preventDefault();
-
-    console.log(recipe.name);
-    return recipe.name;
+    const toEdit = this.state.recipes.filter((recipe) => {
+      if (item.id === recipe.id) return recipe;
+    });
+    let editedRecipe =
+      {
+        id: uuid.v4(),
+        name: 'test',
+        ingredients: 'test',
+        instructions: 'test',
+      }
+    const remainder = this.state.recipes.filter((recipe) => {
+      if (recipe.id !== item.id) return recipe;
+    });
+    this.setState({recipes: remainder});
+    this.setState({recipes: this.state.recipes.concat(editedRecipe)});
     }
 
     render() {
