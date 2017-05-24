@@ -51,6 +51,7 @@ class Layout extends Component {
 
   handleEdit = (props) => {
       console.log(props.name);
+      return 'fart';
   }
 
 
@@ -94,7 +95,9 @@ class Layout extends Component {
             handleRemove={this.handleRemove}
             handleEdit={this.handleEdit}
           />
-          <EditItem />
+          <EditItem
+          name={this.handleEdit}
+          />
           </div>
       )
     }

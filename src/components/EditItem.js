@@ -7,7 +7,7 @@ class EditItem extends React.Component {
     super(props);
     this.state = {
       uuid: '',
-      name: 'edit',
+      name: this.props.name,
       ingredients: '',
       instructions: ''
     }
@@ -23,6 +23,7 @@ class EditItem extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log('this is:', this);
+    console.log(this.state.name);
   }
 
   render() {
@@ -31,7 +32,7 @@ class EditItem extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             <input type="text"
-              defaultValue={this.props.name}
+              defaultValue={this.state.name}
               name="name"
               onChange={this.handleChange} />
               Recipe <br />
