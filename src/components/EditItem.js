@@ -1,15 +1,13 @@
 import React from 'react';
 
 
-
 class EditItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      uuid: '',
-      name: this.props.name,
-      ingredients: '',
-      instructions: ''
+      name: props.name,
+      ingredients: props.ingredients,
+      instructions: props.instructions
     }
   }
 
@@ -32,7 +30,7 @@ class EditItem extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             <input type="text"
-              defaultValue={this.state.name}
+              defaultValue={this.props.name}
               name="name"
               onChange={this.handleChange} />
               Recipe <br />
@@ -40,14 +38,14 @@ class EditItem extends React.Component {
           <label>
           <br />
             <textarea type="text" name="ingredients"
-            defaultValue={this.state.name}
+            defaultValue={this.state.ingredients}
             onChange={this.handleChange} />
           <br />
             Ingredients <br />
           </label>
           <label>
             <textarea type="text" name="instructions"
-            defaultValue={this.state.name}
+            defaultValue={this.state.instructions}
             onChange={this.handleChange} />
           <br />
             Instructions <br />

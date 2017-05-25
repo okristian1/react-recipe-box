@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ItemList from './ItemList';
 import EditItem from './EditItem';
+import Modal from './Modal';
 import {updateStorage, getRecipes, deleteRecipe} from './Storage'
 import uuid from 'uuid';
 
@@ -13,8 +14,15 @@ class Layout extends Component {
       name: '',
       ingredients: '',
       instructions: '',
-      recipes: old
+      recipes: old,
+      modalOpen: false
     };
+  }
+
+  toggleModal = () => {
+    this.setState({
+      modalOpen: !this.state.modalOpen
+    });
   }
 
   handleSubmit = (event) => {
@@ -50,8 +58,12 @@ class Layout extends Component {
   }
 
   handleEdit = (props) => {
-      console.log(props.name);
-      return 'fart';
+      this.setState({
+        id: props.id,
+        name: props.name,
+        ingredients: props.ingredients,
+        instructions: props.instructions
+      })
   }
 
 
@@ -62,7 +74,6 @@ class Layout extends Component {
           <form onSubmit={this.handleSubmit}>
             <label>
               <input
-                value={this.state.name}
                 type="text"
                 name="name"
                 onChange={this.handleChange} />
@@ -71,7 +82,6 @@ class Layout extends Component {
             <label>
             <br />
               <textarea
-                value={this.state.ingredients}
                 type="text"
                 name="ingredients"
               onChange={this.handleChange} />
@@ -80,7 +90,6 @@ class Layout extends Component {
             </label>
             <label>
               <textarea
-                value={this.state.instructions}
                 type="text"
                 name="instructions"
                 onChange={this.handleChange} />
@@ -95,9 +104,19 @@ class Layout extends Component {
             handleRemove={this.handleRemove}
             handleEdit={this.handleEdit}
           />
+          <Modal
+            show={this.state.modalOpen}
+            onClose={this.toggleModal}>
           <EditItem
-          name={this.handleEdit}
-          />
+            name={this.state.name}
+            ingredients={this.state.ingredients}
+            instructions={this.state.instructions}
+           />
+          </Modal>
+          <button onClick={this.toggleModal}>
+          open
+          </button>
+
           </div>
       )
     }
