@@ -19,13 +19,9 @@ class Layout extends Component {
     };
   }
 
-  toggleModal = () => {
-    this.setState({
-      modalOpen: !this.state.modalOpen
-    });
-  }
-
   handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(this);
     let newRecipe =
       {
         id: uuid.v4(),
@@ -40,7 +36,6 @@ class Layout extends Component {
       instructions: ''
     });
     updateStorage(newRecipe);
-    event.preventDefault();
   }
 
   handleChange = (event) => {
@@ -57,6 +52,12 @@ class Layout extends Component {
     deleteRecipe(remainder);
   }
 
+  toggleModal = () => {
+    this.setState({
+      modalOpen: !this.state.modalOpen
+    });
+  }
+
   handleEdit = (props) => {
       this.setState({
         id: props.id,
@@ -64,9 +65,17 @@ class Layout extends Component {
         ingredients: props.ingredients,
         instructions: props.instructions
       })
-  }
+    }
 
+    handleEditedSubmit = (props) => {
+      console.log(this);
+    }
 
+  onEditClick = (recipe) => {
+    this.toggleModal();
+    console.log(recipe);
+    this.handleEdit(recipe);
+}
 
     render() {
       return (
@@ -102,7 +111,7 @@ class Layout extends Component {
           <ItemList
             recipes={this.state.recipes}
             handleRemove={this.handleRemove}
-            handleEdit={this.handleEdit}
+            onEditClick={this.onEditClick}
           />
           <Modal
             show={this.state.modalOpen}
@@ -111,12 +120,10 @@ class Layout extends Component {
             name={this.state.name}
             ingredients={this.state.ingredients}
             instructions={this.state.instructions}
-           />
+            recipes={this.state.recipes}
+            handleEditedSubmit={this.handleEditedSubmit}
+          />
           </Modal>
-          <button onClick={this.toggleModal}>
-          open
-          </button>
-
           </div>
       )
     }

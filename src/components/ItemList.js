@@ -21,7 +21,7 @@ function ItemList (props) {
             <h3>ID: </h3>{recipe.id}
         </li>
         <button onClick={() => props.handleRemove(recipe.id)}> Delete </button>
-        <button onClick={() => props.handleEdit(recipe)}> Edit </button>
+        <button onClick={() => props.onEditClick(recipe)}> Edit </button>
         </ul>
        )
      })}

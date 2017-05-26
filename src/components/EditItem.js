@@ -5,11 +5,14 @@ class EditItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: props.id,
       name: props.name,
       ingredients: props.ingredients,
-      instructions: props.instructions
+      instructions: props.instructions,
+      recipes: props.recipes
     }
   }
+
 
   handleChange = (event) => {
     this.setState({
@@ -17,17 +20,10 @@ class EditItem extends React.Component {
     });
   }
 
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('this is:', this);
-    console.log(this.state.name);
-  }
-
   render() {
     return(
       <div className='recipe-column'>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleEditedSubmit}>
           <label>
             <input type="text"
               defaultValue={this.props.name}

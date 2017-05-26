@@ -1,5 +1,4 @@
 import React from 'react';
-import EditItem from './EditItem';
 
 class Modal extends React.Component {
   render() {
