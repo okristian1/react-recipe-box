@@ -1,48 +1,28 @@
 import React from 'react';
 
 
-class EditItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: props.id,
-      name: props.name,
-      ingredients: props.ingredients,
-      instructions: props.instructions,
-      recipes: props.recipes
-    }
-  }
-
-
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  }
-
-  render() {
-    return(
+const editItem = (props) => (
       <div className='recipe-column'>
-        <form onSubmit={this.handleEditedSubmit}>
+        <form onSubmit={props.handleEditedSubmit}>
           <label>
             <input type="text"
-              defaultValue={this.props.name}
+              defaultValue={props.name}
               name="name"
-              onChange={this.handleChange} />
+              onChange={props.handleChange} />
               Recipe <br />
           </label>
           <label>
           <br />
             <textarea type="text" name="ingredients"
-            defaultValue={this.state.ingredients}
-            onChange={this.handleChange} />
+            defaultValue={props.ingredients}
+            onChange={props.handleChange} />
           <br />
             Ingredients <br />
           </label>
           <label>
             <textarea type="text" name="instructions"
-            defaultValue={this.state.instructions}
-            onChange={this.handleChange} />
+            defaultValue={props.instructions}
+            onChange={props.handleChange} />
           <br />
             Instructions <br />
           </label>
@@ -50,8 +30,6 @@ class EditItem extends React.Component {
           <input type="submit" value="Submit" />
         </form>
         </div>
-    )
-  }
-}
+);
 
-export default EditItem;
+export default editItem;

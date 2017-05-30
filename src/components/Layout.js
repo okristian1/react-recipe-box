@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ItemList from './ItemList';
 import EditItem from './EditItem';
+import ItemForm from './ItemForm';
 import Modal from './Modal';
 import {updateStorage, getRecipes, deleteRecipe} from './Storage'
 import uuid from 'uuid';
@@ -15,13 +16,13 @@ class Layout extends Component {
       ingredients: '',
       instructions: '',
       recipes: old,
+      editRecipe: '',
       modalOpen: false
     };
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this);
     let newRecipe =
       {
         id: uuid.v4(),
@@ -44,6 +45,7 @@ class Layout extends Component {
     });
   }
 
+
   handleRemove = (id) => {
     const remainder = this.state.recipes.filter((recipe) => {
       if (recipe.id !== id) return recipe;
@@ -58,72 +60,59 @@ class Layout extends Component {
     });
   }
 
-  handleEdit = (props) => {
-      this.setState({
-        id: props.id,
-        name: props.name,
-        ingredients: props.ingredients,
-        instructions: props.instructions
-      })
-    }
+  // handleEdit = (props) => {
+  //     this.setState({
+  //       id: props.id,
+  //       name: props.name,
+  //       ingredients: props.ingredients,
+  //       instructions: props.instructions
+  //     })
+  //   }
 
-    handleEditedSubmit = (props) => {
-      console.log(this);
-    }
+  handleEdit = (recipe) => {
+      this.setState({editRecipe: recipe})
+//      console.log(this.state.editRecipe);
+  }
+
+  handleEditedSubmit = (event) => {
+    event.preventDefault();
+    this.toggleModal();
+    console.log(this);
+  }
+
 
   onEditClick = (recipe) => {
     this.toggleModal();
-    console.log(recipe);
     this.handleEdit(recipe);
 }
 
     render() {
       return (
         <div className='recipe-column'>
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              <input
-                type="text"
-                name="name"
-                onChange={this.handleChange} />
-                Recipe <br />
-            </label>
-            <label>
-            <br />
-              <textarea
-                type="text"
-                name="ingredients"
-              onChange={this.handleChange} />
-            <br />
-              Ingredients <br />
-            </label>
-            <label>
-              <textarea
-                type="text"
-                name="instructions"
-                onChange={this.handleChange} />
-            <br />
-              Instructions <br />
-            </label>
-            <br />
-            <input type="submit" value="Submit" />
-          </form>
+
+          <ItemForm
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+          />
+
           <ItemList
             recipes={this.state.recipes}
             handleRemove={this.handleRemove}
             onEditClick={this.onEditClick}
           />
+
           <Modal
             show={this.state.modalOpen}
             onClose={this.toggleModal}>
-          <EditItem
-            name={this.state.name}
-            ingredients={this.state.ingredients}
-            instructions={this.state.instructions}
-            recipes={this.state.recipes}
-            handleEditedSubmit={this.handleEditedSubmit}
-          />
+            <EditItem
+              name={this.state.editRecipe.name}
+              ingredients={this.state.editRecipe.ingredients}
+              instructions={this.state.editRecipe.instructions}
+              toggleModal={this.toggleModal}
+              handleEditedSubmit={this.handleEditedSubmit}
+            />
           </Modal>
+
           </div>
       )
     }
