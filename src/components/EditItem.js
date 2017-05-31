@@ -1,9 +1,9 @@
 import React from 'react';
 
 
-const editItem = (props) => (
+const EditItem = (props) => (
       <div className='recipe-column'>
-        <form onSubmit={props.handleEditedSubmit}>
+        <form id="editForm" onSubmit={props.handleEditedSubmit}>
           <label>
             <input type="text"
               defaultValue={props.name}
@@ -32,4 +32,4 @@ const editItem = (props) => (
         </div>
 );
 
-export default editItem;
+export default EditItem;

@@ -16,7 +16,6 @@ class Layout extends Component {
       ingredients: '',
       instructions: '',
       recipes: old,
-      editRecipe: '',
       modalOpen: false
     };
   }
@@ -60,24 +59,28 @@ class Layout extends Component {
     });
   }
 
-  // handleEdit = (props) => {
-  //     this.setState({
-  //       id: props.id,
-  //       name: props.name,
-  //       ingredients: props.ingredients,
-  //       instructions: props.instructions
-  //     })
-  //   }
-
   handleEdit = (recipe) => {
-      this.setState({editRecipe: recipe})
-//      console.log(this.state.editRecipe);
+      console.log(recipe);
+      this.setState({
+        id: recipe.id,
+        name: recipe.name,
+        ingredients: recipe.ingredients,
+        instructions: recipe.instructions
+      });
   }
 
   handleEditedSubmit = (event) => {
     event.preventDefault();
+    let editedRecipe =
+      {
+        id: this.state.id,
+        name: this.state.name,
+        ingredients: this.state.ingredients,
+        instructions: this.state.instructions,
+      }
+    console.log(editedRecipe);
+//    updateStorage(editedRecipe);
     this.toggleModal();
-    console.log(this);
   }
 
 
@@ -105,10 +108,11 @@ class Layout extends Component {
             show={this.state.modalOpen}
             onClose={this.toggleModal}>
             <EditItem
-              name={this.state.editRecipe.name}
-              ingredients={this.state.editRecipe.ingredients}
-              instructions={this.state.editRecipe.instructions}
+              name={this.state.name}
+              ingredients={this.state.ingredients}
+              instructions={this.state.instructions}
               toggleModal={this.toggleModal}
+              handleChange={this.handleChange}
               handleEditedSubmit={this.handleEditedSubmit}
             />
           </Modal>
