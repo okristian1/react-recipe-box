@@ -30,11 +30,7 @@ class Layout extends Component {
         instructions: this.state.instructions,
       }
     this.setState({recipes: this.state.recipes.concat(newRecipe)});
-    this.setState({
-      name: '',
-      ingredients: '',
-      instructions: ''
-    });
+    this.emptyState();
     updateStorage(newRecipe);
   }
 
@@ -49,8 +45,8 @@ class Layout extends Component {
     const remainder = this.state.recipes.filter((recipe) => {
       if (recipe.id !== id) return recipe;
     });
-    this.setState({recipes: remainder});
     deleteRecipe(remainder);
+    this.setState({recipes: remainder});
   }
 
   toggleModal = () => {
@@ -69,17 +65,27 @@ class Layout extends Component {
       });
   }
 
+  emptyState = () => {
+    this.setState({
+      name: '',
+      ingredients: '',
+      instructions: ''
+    });
+  }
+
   handleEditedSubmit = (event) => {
     event.preventDefault();
     let editedRecipe =
       {
-        id: this.state.id,
+        id: uuid.v4(),
         name: this.state.name,
         ingredients: this.state.ingredients,
         instructions: this.state.instructions,
       }
-    console.log(editedRecipe);
-//    updateStorage(editedRecipe);
+      this.handleRemove(this.state.id);
+    this.setState({recipes: this.state.recipes.concat(editedRecipe)});
+    updateStorage(editedRecipe);
+    this.emptyState();
     this.toggleModal();
   }
 
