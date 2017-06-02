@@ -57,12 +57,14 @@ class Layout extends Component {
 
   handleEdit = (recipe) => {
       console.log(recipe);
+      this.handleRemove(recipe.id);
       this.setState({
         id: recipe.id,
         name: recipe.name,
         ingredients: recipe.ingredients,
         instructions: recipe.instructions
       });
+
   }
 
   emptyState = () => {
@@ -77,16 +79,17 @@ class Layout extends Component {
     event.preventDefault();
     let editedRecipe =
       {
-        id: uuid.v4(),
+        id: this.state.id,
         name: this.state.name,
         ingredients: this.state.ingredients,
         instructions: this.state.instructions,
       }
-      this.handleRemove(this.state.id);
-    this.setState({recipes: this.state.recipes.concat(editedRecipe)});
-    updateStorage(editedRecipe);
+      console.log(editedRecipe.id);
     this.emptyState();
+    updateStorage(editedRecipe);
     this.toggleModal();
+    console.log(this.state.id);
+    this.setState({recipes: this.state.recipes.concat(editedRecipe)});
   }
 
 

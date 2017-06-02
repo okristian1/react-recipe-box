@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const EditItem = (props) => (
       <div className='recipe-column'>
         <form id="editForm" onSubmit={props.handleEditedSubmit}>
@@ -27,7 +26,7 @@ const EditItem = (props) => (
             Instructions <br />
           </label>
           <br />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Save" />
         </form>
         </div>
 );
