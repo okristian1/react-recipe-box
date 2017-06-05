@@ -1,13 +1,14 @@
 import React from 'react';
 
 const ItemForm = (props) => (
+  <div>
     <form onSubmit={props.handleSubmit}>
       <label>
+        <h1>Recipe Name </h1>
         <input
           type="text"
           name="name"
           onChange={props.handleChange} />
-          Recipe <br />
       </label>
       <label>
       <br />
@@ -29,6 +30,8 @@ const ItemForm = (props) => (
       <br />
       <input type="submit" value="Submit" />
     </form>
+    <button onClick={props.toggleAddModal}>Close</button>
+    </div>
   );
 
 

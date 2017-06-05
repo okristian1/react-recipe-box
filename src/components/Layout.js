@@ -16,7 +16,8 @@ class Layout extends Component {
       ingredients: '',
       instructions: '',
       recipes: old,
-      modalOpen: false
+      addModalOpen: false,
+      editModalOpen: false,
     };
   }
 
@@ -31,6 +32,7 @@ class Layout extends Component {
       }
     this.setState({recipes: this.state.recipes.concat(newRecipe)});
     this.emptyState();
+    this.toggleAddModal();
     updateStorage(newRecipe);
   }
 
@@ -49,11 +51,18 @@ class Layout extends Component {
     this.setState({recipes: remainder});
   }
 
-  toggleModal = () => {
+  toggleEditModal = () => {
     this.setState({
-      modalOpen: !this.state.modalOpen
+      editModalOpen: !this.state.editModalOpen
     });
   }
+
+  toggleAddModal = () => {
+    this.setState({
+      addModalOpen: !this.state.addModalOpen
+    });
+  }
+
 
   handleEdit = (recipe) => {
       console.log(recipe);
@@ -84,17 +93,16 @@ class Layout extends Component {
         ingredients: this.state.ingredients,
         instructions: this.state.instructions,
       }
-      console.log(editedRecipe.id);
     this.emptyState();
     updateStorage(editedRecipe);
-    this.toggleModal();
+    this.toggleEditModal();
     console.log(this.state.id);
     this.setState({recipes: this.state.recipes.concat(editedRecipe)});
   }
 
 
   onEditClick = (recipe) => {
-    this.toggleModal();
+    this.toggleEditModal();
     this.handleEdit(recipe);
 }
 
@@ -102,10 +110,20 @@ class Layout extends Component {
       return (
         <div className='recipe-column'>
 
+        <button
+          onClick={this.toggleAddModal}>
+          Add Recipe
+        </button>
+
+        <Modal
+          show={this.state.addModalOpen}
+          onClose={this.toggleAddModal}>
           <ItemForm
             handleSubmit={this.handleSubmit}
             handleChange={this.handleChange}
+            toggleAddModal={this.toggleAddModal}
           />
+        </Modal>
 
           <ItemList
             recipes={this.state.recipes}
@@ -114,13 +132,13 @@ class Layout extends Component {
           />
 
           <Modal
-            show={this.state.modalOpen}
+            show={this.state.editModalOpen}
             onClose={this.toggleModal}>
             <EditItem
               name={this.state.name}
               ingredients={this.state.ingredients}
               instructions={this.state.instructions}
-              toggleModal={this.toggleModal}
+              toggleEditModal={this.toggleEditModal}
               handleChange={this.handleChange}
               handleEditedSubmit={this.handleEditedSubmit}
             />

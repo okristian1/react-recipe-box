@@ -26,7 +26,7 @@ const EditItem = (props) => (
             Instructions <br />
           </label>
           <br />
-          <input type="submit" value="Save" />
+          <button type="submit">Save</button>
         </form>
         </div>
 );

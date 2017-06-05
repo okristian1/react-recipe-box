@@ -3,7 +3,7 @@ import React from 'react';
 function ItemList (props) {
   return (
     <div className='recipe-container'>
-    <h1>Saved Recipes</h1>
+    <h3>Saved Recipes</h3>
     <ul>
       {props.recipes.map(function(recipe) {
        return (
