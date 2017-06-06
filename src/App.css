@@ -57,7 +57,7 @@ li {
 }
 
 input {
-  width: 70%;
+  font-size: 23px;
 }
 
 @keyframes App-logo-spin {

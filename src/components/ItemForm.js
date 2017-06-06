@@ -28,7 +28,7 @@ const ItemForm = (props) => (
         Instructions <br />
       </label>
       <br />
-      <input type="submit" value="Submit" />
+      <button type="submit" value="Submit">Save Recipe</button>
     </form>
     <button onClick={props.toggleAddModal}>Close</button>
     </div>

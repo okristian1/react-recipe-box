@@ -7,7 +7,7 @@ function ItemList (props) {
     <ul>
       {props.recipes.map(function(recipe) {
        return (
-         <ul key={recipe.id} className="recipe-box">
+         <ul key={recipe.id} value={recipe.id} className="recipe-box">
           <li className='recipe-name'>
               <h2>Name: {recipe.name} </h2>
           </li>

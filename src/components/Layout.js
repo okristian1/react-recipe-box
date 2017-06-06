@@ -3,19 +3,20 @@ import ItemList from './ItemList';
 import EditItem from './EditItem';
 import ItemForm from './ItemForm';
 import Modal from './Modal';
-import {updateStorage, getRecipes, deleteRecipe} from './Storage'
+import {updateStorage, getRecipes, deleteRecipe, sortAlpha} from './Storage'
 import uuid from 'uuid';
 
 class Layout extends Component {
   constructor(props) {
     var old = getRecipes();
+    var sorted = sortAlpha(old);
     super(props);
     this.state = {
       id: '',
       name: '',
       ingredients: '',
       instructions: '',
-      recipes: old,
+      recipes: sorted,
       addModalOpen: false,
       editModalOpen: false,
     };
@@ -31,7 +32,6 @@ class Layout extends Component {
         instructions: this.state.instructions,
       }
     this.setState({recipes: this.state.recipes.concat(newRecipe)});
-    this.emptyState();
     this.toggleAddModal();
     updateStorage(newRecipe);
   }
@@ -84,6 +84,19 @@ class Layout extends Component {
     });
   }
 
+//   sortRecipes = (recipes) => {
+//     console.log("clicked");
+//     var sortRecipes = [];
+//     for (var recipe in recipes) {
+//       sortRecipes.push(recipe, recipes[recipe.name])
+//     }
+//     sortRecipes.sort(function(a, b) {
+//     return a[1] - b[1];
+//   });
+//   console.log(sortRecipes);
+//   this.setState({recipes: sortRecipes})
+// }
+
   handleEditedSubmit = (event) => {
     event.preventDefault();
     let editedRecipe =
@@ -93,10 +106,8 @@ class Layout extends Component {
         ingredients: this.state.ingredients,
         instructions: this.state.instructions,
       }
-    this.emptyState();
     updateStorage(editedRecipe);
     this.toggleEditModal();
-    console.log(this.state.id);
     this.setState({recipes: this.state.recipes.concat(editedRecipe)});
   }
 
@@ -109,6 +120,7 @@ class Layout extends Component {
     render() {
       return (
         <div className='recipe-column'>
+
 
         <button
           onClick={this.toggleAddModal}>

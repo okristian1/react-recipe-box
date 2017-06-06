@@ -18,9 +18,20 @@ function getRecipes() {
   if (!savedRecipes) {
     return []
   }
-  return savedRecipes
+  return sortAlpha(savedRecipes)
+}
+
+function sortAlpha(recipes) {
+  var byName = recipes.slice(0);
+  byName.sort(function(a,b) {
+      var x = a.name.toLowerCase();
+      var y = b.name.toLowerCase();
+      return x < y ? -1 : x > y ? 1 : 0;
+  });
+  return byName;
 }
 
 export {updateStorage};
 export {getRecipes};
 export {deleteRecipe};
+export {sortAlpha};
