@@ -22,20 +22,6 @@ class Layout extends Component {
     };
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    let newRecipe =
-      {
-        id: uuid.v4(),
-        name: this.state.name,
-        ingredients: this.state.ingredients,
-        instructions: this.state.instructions,
-      }
-    this.setState({recipes: this.state.recipes.concat(newRecipe)});
-    this.toggleAddModal();
-    updateStorage(newRecipe);
-  }
-
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
@@ -59,7 +45,11 @@ class Layout extends Component {
 
   toggleAddModal = () => {
     this.setState({
-      addModalOpen: !this.state.addModalOpen
+      addModalOpen: !this.state.addModalOpen,
+      id: '',
+      name: '',
+      ingredients: '',
+      instructions: ''
     });
   }
 
@@ -76,27 +66,6 @@ class Layout extends Component {
 
   }
 
-  emptyState = () => {
-    this.setState({
-      name: '',
-      ingredients: '',
-      instructions: ''
-    });
-  }
-
-//   sortRecipes = (recipes) => {
-//     console.log("clicked");
-//     var sortRecipes = [];
-//     for (var recipe in recipes) {
-//       sortRecipes.push(recipe, recipes[recipe.name])
-//     }
-//     sortRecipes.sort(function(a, b) {
-//     return a[1] - b[1];
-//   });
-//   console.log(sortRecipes);
-//   this.setState({recipes: sortRecipes})
-// }
-
   handleEditedSubmit = (event) => {
     event.preventDefault();
     let editedRecipe =
@@ -106,11 +75,40 @@ class Layout extends Component {
         ingredients: this.state.ingredients,
         instructions: this.state.instructions,
       }
+    let recipes = this.state.recipes.concat(editedRecipe);
+    let sortedRecipes = sortAlpha(recipes);
+    this.setState({
+      recipes: sortedRecipes,
+      id: '',
+      name: '',
+      ingredients: '',
+      instructions: ''
+
+    });
     updateStorage(editedRecipe);
     this.toggleEditModal();
-    this.setState({recipes: this.state.recipes.concat(editedRecipe)});
   }
-
+  handleSubmit = (event) => {
+    event.preventDefault();
+    let newRecipe =
+      {
+        id: uuid.v4(),
+        name: this.state.name,
+        ingredients: this.state.ingredients,
+        instructions: this.state.instructions,
+      }
+    let recipes = this.state.recipes.concat(newRecipe);
+    let sortedRecipes = sortAlpha(recipes);
+    this.setState({
+      recipes: sortedRecipes,
+      id: '',
+      name: '',
+      ingredients: '',
+      instructions: ''
+      });
+    this.toggleAddModal();
+    updateStorage(newRecipe);
+  }
 
   onEditClick = (recipe) => {
     this.toggleEditModal();
@@ -120,7 +118,6 @@ class Layout extends Component {
     render() {
       return (
         <div className='recipe-column'>
-
 
         <button
           onClick={this.toggleAddModal}>
