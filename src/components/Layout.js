@@ -120,6 +120,7 @@ class Layout extends Component {
         <div className='recipe-column'>
 
         <button
+          className="addRecipeButton"
           onClick={this.toggleAddModal}>
           Add Recipe
         </button>

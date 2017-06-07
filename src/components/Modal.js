@@ -14,18 +14,19 @@ class Modal extends React.Component {
       bottom: 0,
       left: 0,
       right: 0,
-      backgroundColor: 'rgba(0,0,0,0.3)',
+      backgroundColor: 'rgba(0,0,0,0.8)',
       padding: 50
     };
 
     // The modal "window"
     const modalStyle = {
-      backgroundColor: '#fff',
+      backgroundColor: '#33658A',
       borderRadius: 5,
       maxWidth: 500,
       minHeight: 300,
       margin: '0 auto',
       padding: 30,
+      color: 'white',
     };
 
     return (

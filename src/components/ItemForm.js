@@ -11,21 +11,18 @@ const ItemForm = (props) => (
           onChange={props.handleChange} />
       </label>
       <label>
-      <br />
+      <h3>Ingredients</h3>
         <textarea
           type="text"
           name="ingredients"
           onChange={props.handleChange} />
-      <br />
-        Ingredients <br />
       </label>
       <label>
+      <h3>Instructions</h3>
         <textarea
           type="text"
           name="instructions"
           onChange={props.handleChange} />
-      <br />
-        Instructions <br />
       </label>
       <br />
       <button type="submit" value="Submit">Save Recipe</button>
