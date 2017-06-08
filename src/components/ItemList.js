@@ -5,7 +5,7 @@ function ItemList (props) {
   return (
     <div className='recipe-container'>
     {(props.recipes.length > 0)
-      ? <div> Saved Receipes </div>
+      ? <div> <h3>Saved Receipes</h3> </div>
       : <div></div>
     }
       {props.recipes.map(function(recipe) {
