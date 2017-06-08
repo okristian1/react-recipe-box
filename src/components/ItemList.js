@@ -1,10 +1,13 @@
 import React from 'react';
 
 function ItemList (props) {
+
   return (
     <div className='recipe-container'>
-    <h3>Saved Recipes</h3>
-    <ul>
+    {(props.recipes.length > 0)
+      ? <div> Saved Receipes </div>
+      : <div></div>
+    }
       {props.recipes.map(function(recipe) {
        return (
          <ul key={recipe.id} value={recipe.id} className="recipe-box">
@@ -22,10 +25,9 @@ function ItemList (props) {
         <button onClick={() => props.onEditClick(recipe)}> Edit </button>
         </ul>
        )
-     })}
-     </ul>
-
-     </div>
+     })
+   }
+ </div>
   )
 }
 
