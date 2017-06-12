@@ -23,7 +23,7 @@ const EditItem = (props) => (
             onChange={props.handleChange} />
           </label>
           <br />
-          <button type="submit">Save</button>
+          <button type="submit" className='recipe-box-button'>Save</button>
         </form>
         </div>
 );

@@ -25,13 +25,13 @@ function ItemList (props) {
               })}
           </li>
           <br />
-        <button onClick={() => props.handleRemove(recipe.id)}> Delete </button>
-        <button onClick={() => props.onEditClick(recipe)}> Edit </button>
+        <button onClick={() => props.handleRemove(recipe.id)} className='recipe-box-button'> Delete </button>
+        <button onClick={() => props.onEditClick(recipe)} className='recipe-box-button'> Edit </button>
         </ul>
        )
      })
    }
- </div>
+   ​ </div>
   )
 }
 

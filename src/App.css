@@ -70,7 +70,7 @@ html {
   text-align: center;
 }
 
-button {
+.recipe-box-button {
   width: 120px;
   height: 40px;
   background: #F6AE2D;
@@ -83,7 +83,19 @@ button {
 	box-shadow: 0px 2px #212121, 0px 10px 15px rgba(0, 0, 0, 0.2);
 }
 
+.recipe-box-button:hover {
+  background: #F6AE2F;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
 .addRecipeButton {
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  margin: 5px;
+  font-weight: bold;
+	box-shadow: 0px 2px #212121, 0px 10px 15px rgba(0, 0, 0, 0.2);
   background: white;
   color: black;
   width: 200px;

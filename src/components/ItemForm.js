@@ -25,9 +25,9 @@ const ItemForm = (props) => (
           onChange={props.handleChange} />
       </label>
       <br />
-      <button type="submit" value="Submit">Save Recipe</button>
+      <button type="submit" value="Submit" className='recipe-box-button'>Save Recipe</button>
     </form>
-    <button onClick={props.toggleAddModal}>Close</button>
+    <button onClick={props.toggleAddModal} className='recipe-box-button'>Close</button>
     </div>
   );
 
