@@ -55,8 +55,7 @@ class Layout extends Component {
 
 
   handleEdit = (recipe) => {
-      console.log(recipe);
-      this.handleRemove(recipe.id);
+    this.handleRemove(recipe.id);
       this.setState({
         id: recipe.id,
         name: recipe.name,
@@ -94,7 +93,7 @@ class Layout extends Component {
       {
         id: uuid.v4(),
         name: this.state.name,
-        ingredients: this.state.ingredients,
+        ingredients: this.state.ingredients.split(",").join("\n"),
         instructions: this.state.instructions,
       }
     let recipes = this.state.recipes.concat(newRecipe);

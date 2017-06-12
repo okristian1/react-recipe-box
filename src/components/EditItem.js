@@ -4,26 +4,23 @@ const EditItem = (props) => (
       <div className='recipe-column'>
         <form id="editForm" onSubmit={props.handleEditedSubmit}>
           <label>
+          <h1>Name</h1>
             <input type="text"
               defaultValue={props.name}
               name="name"
               onChange={props.handleChange} />
-              Recipe <br />
           </label>
           <label>
-          <br />
+          <h3>Ingredients</h3>
             <textarea type="text" name="ingredients"
             defaultValue={props.ingredients}
             onChange={props.handleChange} />
-          <br />
-            Ingredients <br />
           </label>
           <label>
+          <h3>Instructions</h3>
             <textarea type="text" name="instructions"
             defaultValue={props.instructions}
             onChange={props.handleChange} />
-          <br />
-            Instructions <br />
           </label>
           <br />
           <button type="submit">Save</button>
